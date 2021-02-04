@@ -1,4 +1,5 @@
 import 'package:dados/stores/dice.store.dart';
+import 'package:dados/ui/d20/dice20.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:admob_flutter/admob_flutter.dart';
@@ -7,8 +8,31 @@ class DiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final diceCounter = DiceCounter();
-    AdmobBannerSize bannerSize = AdmobBannerSize.BANNER;
+    AdmobBannerSize bannerSize = AdmobBannerSize.LARGE_BANNER;
     return Scaffold(
+      drawer: Drawer(
+        child: Container(
+          color: Colors.amber,
+          child: ListView(
+            children: [
+              Card(
+                child: ListTile(
+                  title: Text(
+                    'Dado de 20 faces',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Dice20()),
+                        (route) => false);
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.amber[700],
       appBar: AppBar(
         backgroundColor: Colors.amber[900],
